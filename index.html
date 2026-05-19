@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfa.</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Neo-Brutalism -->
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="melet.jpg">
+</head>
+<body class="terminal-active">
+    <div class="noise-overlay"></div>
+    
+    <!-- Retro Terminal Loading Screen -->
+    <div id="terminal-screen" class="terminal-screen">
+        <div class="crt-glow"></div>
+        <div class="crt-scanlines"></div>
+        <div class="crt-sync-distortion"></div>
+        <div class="crt-flicker"></div>
+        
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-dot btn-close"></span>
+                    <span class="btn-dot btn-minimize"></span>
+                    <span class="btn-dot btn-maximize"></span>
+                </div>
+                <div class="terminal-title-text">guest@alfa-os:~ (bash)</div>
+                <div class="terminal-lang-select">
+                    <button class="lang-btn terminal-lang-btn active" data-lang="id">ID</button>
+                    <span class="separator">/</span>
+                    <button class="lang-btn terminal-lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+            
+            <div class="terminal-content" id="terminal-content">
+                <div class="terminal-brand-header">
+                    <pre class="terminal-logo-ascii">
+ █████  ██      ███████  █████  
+██   ██ ██      ██      ██   ██ 
+███████ ██      █████   ███████ 
+██   ██ ██      ██      ██   ██ 
+██   ██ ███████ ██      ██   ██ </pre>
+                    <div class="terminal-system-version">ALFA-OS (v1.0.4-RETRO)</div>
+                </div>
+                
+                <div class="terminal-status-panel">
+                    <div class="status-item">
+                        <span class="status-label" data-i18n="terminal-port-label">PORTFOLIO PORT:</span>
+                        <span class="status-val secure" data-i18n="terminal-port-secure">SECURE [8080]</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label" data-i18n="terminal-state-label">SYSTEM STATE:</span>
+                        <span class="status-val locked" data-i18n="terminal-state-locked">LOCKED</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-instructions">
+                    <p class="instruction-text" data-i18n="terminal-instruction">&gt;&gt;&gt; TYPE <span class="keyword-highlight">"start"</span> AND PRESS ENTER TO BOOT PORTFOLIO</p>
+                </div>
+                
+                <div class="terminal-input-container">
+                    <div class="terminal-input-row" id="terminal-prompt-row">
+                        <span class="prompt-text">guest@alfa-os:~$</span>
+                        <span class="input-display" id="input-display"></span><span class="cursor">█</span>
+                        <input type="text" id="terminal-input" class="hidden-input" autocomplete="off" spellcheck="false" autofocus>
+                    </div>
+                </div>
+                
+                <div class="terminal-actions">
+                    <button class="terminal-btn-action" id="terminal-auto-btn">
+                        <span class="btn-glow"></span>
+                        <span class="btn-text" data-i18n="terminal-auto-btn">AUTO-BOOT SYSTEM</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- PHYSICAL DIALS & AMBER LED POWER ON VINTAGE MONITOR CHASSIS -->
+            <div class="terminal-chassis-controls">
+                <div class="brand-badge">ALFA-OS MONITOR</div>
+                <div class="dials-group">
+                    <div class="dial-container">
+                        <span class="dial-label">BRIGHTNESS</span>
+                        <div class="dial dial-brightness"></div>
+                    </div>
+                    <div class="dial-container">
+                        <span class="dial-label">CONTRAST</span>
+                        <div class="dial dial-contrast"></div>
+                    </div>
+                    <div class="dial-container">
+                        <span class="dial-label">V-HOLD</span>
+                        <div class="dial dial-vhold"></div>
+                    </div>
+                    <div class="power-group">
+                        <span class="dial-label">POWER</span>
+                        <div class="led-light-amber"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCESS GRANTED POPUP -->
+        <div id="access-granted-popup" class="access-popup">
+            <div class="popup-border">
+                <div class="popup-glow"></div>
+                <div class="popup-title" data-i18n="granted-title">AUTHENTICATION SYSTEM</div>
+                <div class="popup-message" data-i18n="granted-message">ACCESS GRANTED</div>
+                <div class="popup-subtext" data-i18n="granted-subtext">DECRYPTING AMFHAA PORTFOLIO SECURE DATA...</div>
+                <div class="popup-loader">
+                    <div class="popup-bar" id="popup-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCESS DENIED POPUP -->
+        <div id="access-denied-popup" class="access-popup denied">
+            <div class="popup-border popup-border-denied">
+                <div class="popup-glow popup-glow-denied"></div>
+                <div class="popup-title popup-title-denied" data-i18n="denied-title">SECURITY SYSTEM</div>
+                <div class="popup-message popup-message-denied" data-i18n="denied-message">ACCESS DENIED</div>
+                <div class="popup-subtext popup-subtext-denied" data-i18n="denied-subtext">
+                    ERROR: INVALID CRACK CODE DETECTED.<br><br>
+                    PLEASE TYPE <span class="keyword-highlight red">"start"</span> AND PRESS ENTER,<br>
+                    OR CLICK THE AUTO-BOOT BUTTON IN THE MAIN SHELL.
+                </div>
+                <div class="popup-actions-denied">
+                    <button class="terminal-btn-action btn-denied" id="terminal-denied-back-btn" data-i18n="denied-back">
+                        RETURN TO SHELL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <nav class="navbar">
+        <div class="logo">Amfhaa.</div>
+        <ul class="nav-links">
+            <li><a href="#about" class="hover-wobble" data-i18n="nav-about">Tentang</a></li>
+            <li><a href="#projects" class="hover-wobble" data-i18n="nav-projects">Projek</a></li>
+            <li><a href="#contact" class="hover-wobble" data-i18n="nav-contact">Kontak</a></li>
+            <li><a href="credits.html" class="hover-wobble" data-i18n="nav-credits">Credits</a></li>
+        </ul>
+        <div class="nav-actions">
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="id">ID</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+            <a href="#contact" class="btn primary-btn hover-wobble" data-i18n="nav-cta">Sapa Aku!</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <video autoplay loop muted playsinline class="hero-video-bg">
+            <source src="background hero.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-content">
+            
+            <h1 class="hero-title">
+                <span class="hero-word">Haiii,</span> <span class="hero-word">Aku</span> <span class="hero-word">Alfa!</span><br>
+                <span class="hero-word">Anak</span> <span class="hero-word">Santri</span> <span class="hero-word">yang</span> <span class="hero-word">suka</span><br>
+                <span class="hero-tags">
+                    <span class="hero-pop" style="display: inline-block;">
+                        <span class="highlight highlight-blue levitate">Coding</span>
+                    </span>
+                    <span class="tag-and hero-pop" style="display: inline-block;">&</span>
+                    <span class="hero-pop" style="display: inline-block;">
+                        <span class="highlight highlight-pink levitate">Design.</span>
+                    </span>
+                </span>
+            </h1>
+            <p class="hero-subtitle fade-in-up" style="animation-delay: 0.2s" data-i18n="hero-subtitle">
+                Bikin website itu hobiku sih. Aku suka ngotak ngatik software. Aku juga suka design design dan editing foto dan video.<span style="white-space: nowrap;"> Pokoknya gitu deh.</span>
+            </p>
+        </div>
+    </header>
+
+    <section id="about" class="about-section">
+        <h2 class="section-title" data-i18n="about-title">Tentang Aku</h2>
+        <div class="about-container">
+            <!-- Kiri: 2 Card -->
+            <div class="about-grid-col">
+                <div class="about-card yellow-bg card-anim">
+                    <div class="card-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="#0f0f0f" stroke="#0f0f0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" fill="#0f0f0f"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21" stroke="#0f0f0f" stroke-width="3"></line>
+                            <line x1="12" y1="17" x2="12" y2="21" stroke="#0f0f0f" stroke-width="3"></line>
+                            <path d="M6 8l3 3-3 3" fill="none" stroke="#FEE440" stroke-width="2"></path>
+                            <line x1="11" y1="14" x2="15" y2="14" stroke="#FEE440" stroke-width="2"></line>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="about-coder-title">Coder</h3>
+                    <p data-i18n="about-coder-desc">Suka ngulik HTML, CSS, dan JS. Anime.js adalah teman baikku saat ini buat bikin animasi mulus.</p>
+                </div>
+                <div class="about-card green-bg card-anim">
+                    <div class="card-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="#0f0f0f" stroke="#0f0f0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2.00018C14.6522 2.00018 17.1957 3.05375 19.0711 4.92913C20.9464 6.8045 22 9.34801 22 12.0002C22 13.3263 21.4732 14.598 20.5355 15.5357C19.5979 16.4734 18.3261 17.0002 17 17.0002H15C14.7348 17.0002 14.4804 17.1055 14.2929 17.2931C14.1054 17.4806 14 17.7349 14 18.0002V18.5002C14 19.4284 13.6313 20.3187 12.9749 20.9751C12.3185 21.6315 11.4283 22.0002 10.5 22.0002C8.24566 22.0002 6.08365 21.1044 4.48959 19.5103C2.89553 17.9163 2 15.7543 2 13.5002C2 10.4502 3.21161 7.5251 5.36831 5.3684C7.52502 3.2117 10.4501 2.00018 12 2.00018Z" fill="#0f0f0f"></path>
+                            <circle cx="7.5" cy="10.5" r="1.5" fill="#F72585" stroke="none"></circle>
+                            <circle cx="10.5" cy="6.5" r="1.5" fill="#FEE440" stroke="none"></circle>
+                            <circle cx="15.5" cy="7.5" r="1.5" fill="#4361EE" stroke="none"></circle>
+                            <circle cx="17.5" cy="11.5" r="1.5" fill="#06D6A0" stroke="none"></circle>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="about-designer-title">Designer</h3>
+                    <p data-i18n="about-designer-desc">Nggak cuma ngoding, aku juga suka bikin UI/UX design di Figma. Pokoknya harus keren.</p>
+                </div>
+            </div>
+            
+            <!-- Tengah: Foto & Fluid Shapes -->
+            <div class="about-photo-wrapper card-anim">
+                <!-- Fluid Elements Removed -->
+
+
+                <div class="about-photo-card">
+                    <div class="photo-wrapper">
+                        <img src="profile.JPG" alt="Amfhaa" class="photo-img">
+                    </div>
+                </div>
+                
+                <!-- Arrow Overlay -->
+                <div class="photo-arrow-overlay">
+                    <div class="arrow-float-container">
+                        <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 94 82 C 90 50, 70 25, 30 16 L 32 6 L 6 22 L 26 48 L 26 36 C 56 42, 74 62, 82 84 Z" fill="#FF0033"/>
+                        </svg>
+                        <span class="arrow-text" data-i18n="about-sticker">Sosok Asli!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kanan: 2 Card -->
+            <div class="about-grid-col">
+                <div class="about-card pink-bg card-anim">
+                    <div class="card-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="#0f0f0f" stroke="#0f0f0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" fill="#0f0f0f"></rect>
+                            <polygon points="23 7 16 12 23 17 23 7" fill="#0f0f0f"></polygon>
+                            <circle cx="8" cy="12" r="3" fill="#F72585" stroke="none"></circle>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="about-editor-title">Editor</h3>
+                    <p data-i18n="about-editor-desc">Ngedit foto sama video itu asik! Kadang suka bikin konten random kalau lagi gabut.</p>
+                </div>
+                <div class="about-card blue-bg card-anim">
+                    <div class="card-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="#0f0f0f" stroke="#0f0f0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 9v4a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V9a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5z" fill="#0f0f0f"></path>
+                            <line x1="6" y1="11" x2="10" y2="11" stroke="#E0E7FF" stroke-width="2"></line>
+                            <line x1="8" y1="9" x2="8" y2="13" stroke="#E0E7FF" stroke-width="2"></line>
+                            <circle cx="15.5" cy="12.5" r="1.5" fill="#F72585" stroke="none"></circle>
+                            <circle cx="17.5" cy="9.5" r="1.5" fill="#FEE440" stroke="none"></circle>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="about-gamer-title">Gamer</h3>
+                    <p data-i18n="about-gamer-desc">Waktu luang? Dipake main game atau nyari referensi web asik yang gak alay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="marquee" class="marquee-section">
+        <div class="marquee-content">
+            <span class="marquee-text">HTML ✦ CSS ✦ JavaScript ✦ Photoshop ✦ Premier Pro ✦ After Effect ✦ HTML ✦ CSS ✦ JavaScript ✦ Photoshop ✦ Premier Pro ✦ After Effect ✦ HTML ✦ CSS ✦ JavaScript ✦ Photoshop ✦ Premier Pro ✦ After Effect ✦ HTML ✦ CSS ✦ JavaScript ✦ Photoshop ✦ Premier Pro ✦ After Effect</span>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <h2 class="section-title" data-i18n="projects-title">Projek-projekku Sebelumnya</h2>
+        <div class="projects-grid">
+            <!-- Card 1 -->
+            <div class="project-card card-anim">
+                <div class="project-img-wrapper">
+                    <img src="ahafest.png" alt="ahafest">
+                </div>
+                <div class="project-info">
+                    <span class="tag tag-pink">Web Dev</span>
+                    <h3 data-i18n="project1-title">Website Ahafest</h3>
+                    <p data-i18n="project1-desc">Website untuk event Al-Hamidiyah Festival. Mempermudahkan panitia untuk menginformasikan perihal event dan menjual merchandize.</p>
+                    <a href="https://github.com/Amfhaa/ahafest2025" target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn" data-i18n="project1-btn">Lihat Selengkapnya</a>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="project-card card-anim">
+                <div class="project-img-wrapper">
+                    <img src="ilan.png" alt="Auto I'lan">
+                </div>
+                <div class="project-info">
+                    <span class="tag tag-pink">Web Dev</span>
+                    <h3 data-i18n="project2-title">Auto I'lan</h3>
+                    <p data-i18n="project2-desc">Website yang dibikin pas masih jadi pengurus pondok bagian bahasa untuk program I'lan (Pengumuman Bahasa).</p>
+                    <a href="https://github.com/Amfhaa/Auto-I-lan" target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn" data-i18n="project2-btn">Lihat Selengkapnya</a>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="project-card card-anim">
+                <div class="project-img-wrapper">
+                    <img src="ACS.png" alt="ACS">
+                </div>
+                <div class="project-info">
+                    <span class="tag tag-pink">Video Editing</span>
+                    <h3 data-i18n="project3-title">Video Recap ACS</h3>
+                    <p data-i18n="project3-desc">Video recap untuk event Al-Hamidiyah Championship (ACS).</p>
+                    <a href="https://drive.google.com/file/d/1Pief8LdTg3Nl8MGDXB-Sdu7a1_87n-Yy/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn" data-i18n="project3-btn">Nonton</a>
+                </div>
+            </div>
+                    </div>
+        
+        <!-- View More Button Container -->
+        <div class="projects-more-container card-anim">
+            <a href="projects.html" class="btn primary-btn hover-wobble projects-more-btn" data-i18n="projects-more-btn">Lihat Yang Lain Juga</a>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <h2 class="terminal-text" data-i18n="contact-title">Mau ngobrol lebih lanjut?</h2>
+            <p class="terminal-text" data-i18n="contact-desc">Gas lah ngobrol, mabar, atau apalah.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/ammfhaa/" target="_blank" rel="noopener noreferrer" class="social-btn hover-wobble">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    Instagram
+                </a>
+                <a href="https://github.com/Amfhaa" target="_blank" rel="noopener noreferrer" class="social-btn hover-wobble">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/malfatihp/" target="_blank" rel="noopener noreferrer" class="social-btn hover-wobble">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                </a>
+                <a href="https://discordapp.com/users/759337844505313281" target="_blank" rel="noopener noreferrer" class="social-btn hover-wobble">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    Discord
+                </a>
+            </div>
+            <p class="footer-credit" data-i18n="footer-credit">Made with ❤️ by Amfhaa.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="scroll-top-btn btn primary-btn hover-wobble">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <!-- Floating Music Controller (Hidden in terminal screen, pops up in hero page) -->
+    <div id="music-control-container" class="music-control-container">
+        <button id="music-toggle-btn" class="music-toggle-btn playing" aria-label="Toggle Music">
+            <span class="music-icon-wrapper">
+                <svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path class="sound-wave wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path class="sound-wave wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+            </span>
+            <span class="music-status-text" data-i18n="music-on">MUSIK: NYALA</span>
+            <span class="retro-visualizer">
+                <span class="bar bar-1"></span>
+                <span class="bar bar-2"></span>
+                <span class="bar bar-3"></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="backsound-audio" src="backsound.mp3" loop></audio>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
