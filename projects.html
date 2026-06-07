@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Alfa.</title>
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts for Neo-Brutalism -->
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="icon" type="image/jpg" href="melet.jpg">
 </head>
+
 <body>
     <div class="noise-overlay"></div>
-    
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="index.html" class="logo hover-wobble" style="text-decoration: none; color: inherit;">Amfhaa.</a>
@@ -20,6 +24,8 @@
             <li><a href="index.html#projects" class="hover-wobble" data-i18n="nav-projects">Projek</a></li>
             <li><a href="index.html#contact" class="hover-wobble" data-i18n="nav-contact">Kontak</a></li>
             <li><a href="credits.html" class="hover-wobble" data-i18n="nav-credits">Kredit</a></li>
+            <li class="mobile-cta-item"><a href="index.html" class="btn primary-btn hover-wobble"
+                    data-i18n="projects-back-btn">Kembali Ke Beranda</a></li>
         </ul>
         <div class="nav-actions">
             <!-- Language Switcher -->
@@ -27,16 +33,25 @@
                 <button class="lang-btn active" data-lang="id">ID</button>
                 <button class="lang-btn" data-lang="en">EN</button>
             </div>
-            <a href="index.html" class="btn primary-btn hover-wobble" data-i18n="projects-back-btn">Kembali Ke Beranda</a>
+            <a href="index.html" class="btn primary-btn hover-wobble" data-i18n="projects-back-btn">Kembali Ke
+                Beranda</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
     </nav>
 
     <!-- Projects Grid Section -->
     <section id="projects" class="projects-section" style="padding-top: 140px;">
         <div class="projects-header-content">
-            <h1 class="section-title" data-i18n="projects-page-title" style="margin-bottom: 16px;">Semua Karya & Projekku</h1>
-            <p style="text-align: center; color: rgba(255, 255, 255, 0.7); max-width: 700px; margin: 0 auto 60px; font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;">
-                Berikut adalah koleksi lengkap project santai dan hasil eksperimen yang pernah aku rancang dan kembangkan, mencakup Web Development dan UI/UX Design.
+            <h1 class="section-title" data-i18n="projects-page-title" style="margin-bottom: 16px;">Semua Karya &
+                Projekku</h1>
+            <p class="projects-page-desc"
+                style="text-align: center; color: rgba(255, 255, 255, 0.7); max-width: 700px; margin: 0 auto 60px; font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;">
+                Berikut adalah koleksi lengkap project santai dan hasil eksperimen yang pernah aku rancang dan
+                kembangkan, mencakup Web Development dan UI/UX Design.
             </p>
         </div>
 
@@ -49,8 +64,10 @@
                 <div class="project-info">
                     <span class="tag tag-pink">Web Dev</span>
                     <h3 data-i18n="project1-title">Website Ahafest</h3>
-                    <p data-i18n="project1-desc">Website untuk event Al-Hamidiyah Festival. Mempermudahkan panitia untuk menginformasikan perihal event dan menjual merchandize.</p>
-                    <a href="https://github.com/Amfhaa/ahafest2025" target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn" data-i18n="project1-btn">Lihat Selengkapnya</a>
+                    <p data-i18n="project1-desc">Website untuk event Al-Hamidiyah Festival. Mempermudahkan panitia untuk
+                        menginformasikan perihal event dan menjual merchandize.</p>
+                    <a href="https://github.com/Amfhaa/ahafest2025" target="_blank" rel="noopener noreferrer"
+                        class="btn primary-btn hover-wobble project-btn" data-i18n="project1-btn">Lihat Selengkapnya</a>
                 </div>
             </div>
 
@@ -62,8 +79,10 @@
                 <div class="project-info">
                     <span class="tag tag-pink">Web Dev</span>
                     <h3 data-i18n="project2-title">Auto I'lan</h3>
-                    <p data-i18n="project2-desc">Website yang dibikin pas masih jadi pengurus pondok bagian bahasa untuk program I'lan (Pengumuman Bahasa).</p>
-                    <a href="https://github.com/Amfhaa/Auto-I-lan" target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn" data-i18n="project2-btn">Lihat Selengkapnya</a>
+                    <p data-i18n="project2-desc">Website yang dibikin pas masih jadi pengurus pondok bagian bahasa untuk
+                        program I'lan (Pengumuman Bahasa).</p>
+                    <a href="https://github.com/Amfhaa/Auto-I-lan" target="_blank" rel="noopener noreferrer"
+                        class="btn primary-btn hover-wobble project-btn" data-i18n="project2-btn">Lihat Selengkapnya</a>
                 </div>
             </div>
 
@@ -76,7 +95,9 @@
                     <span class="tag tag-blue">Video Editing</span>
                     <h3 data-i18n="project3-title">Video Recap ACS</h3>
                     <p data-i18n="project3-desc">Video recap untuk event Al-Hamidiyah Championship (ACS).</p>
-                    <a href="https://drive.google.com/file/d/1Pief8LdTg3Nl8MGDXB-Sdu7a1_87n-Yy/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn" data-i18n="project3-btn">Nonton</a>
+                    <a href="https://drive.google.com/file/d/1Pief8LdTg3Nl8MGDXB-Sdu7a1_87n-Yy/view?usp=sharing"
+                        target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn"
+                        data-i18n="project3-btn">Nonton</a>
                 </div>
             </div>
 
@@ -88,8 +109,10 @@
                 <div class="project-info">
                     <span class="tag tag-pink">Web Dev</span>
                     <h3 data-i18n="project4-title">Pemilukasa 25</h3>
-                    <p data-i18n="project4-desc">Website yang dibuat untuk pemilihan ketua ISPAH (pengurus pondok) dalam sebuah sistem yang digital (mager ngitung kertas satu satu euy).</p>
-                    <a href="https://github.com/Amfhaa/pemilukasa2025" target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn" data-i18n="project4-btn">Lihat Selengkapnya</a>
+                    <p data-i18n="project4-desc">Website yang dibuat untuk pemilihan ketua ISPAH (pengurus pondok) dalam
+                        sebuah sistem yang digital (mager ngitung kertas satu satu euy).</p>
+                    <a href="https://github.com/Amfhaa/pemilukasa2025" target="_blank" rel="noopener noreferrer"
+                        class="btn primary-btn hover-wobble project-btn" data-i18n="project4-btn">Lihat Selengkapnya</a>
                 </div>
             </div>
 
@@ -101,8 +124,10 @@
                 <div class="project-info">
                     <span class="tag tag-pink">Web Dev</span>
                     <h3 data-i18n="project5-title">Pemilos 25</h3>
-                    <p data-i18n="project5-desc">Sama aja penjelasannya kaya card sebelumnya, tapi bedanya ini ketua OSIS bukan ketua ISPAH hehe.</p>
-                    <a href="https://github.com/Amfhaa/pemilos25" target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn" data-i18n="project5-btn">Lihat Selengkapnya</a>
+                    <p data-i18n="project5-desc">Sama aja penjelasannya kaya card sebelumnya, tapi bedanya ini ketua
+                        OSIS bukan ketua ISPAH hehe.</p>
+                    <a href="https://github.com/Amfhaa/pemilos25" target="_blank" rel="noopener noreferrer"
+                        class="btn primary-btn hover-wobble project-btn" data-i18n="project5-btn">Lihat Selengkapnya</a>
                 </div>
             </div>
 
@@ -114,8 +139,10 @@
                 <div class="project-info">
                     <span class="tag tag-pink">Web Dev</span>
                     <h3 data-i18n="project6-title">Kos Dwiga</h3>
-                    <p data-i18n="project6-desc">Website Property Management System (PMS) buat bisnis kos kosan. Pas website portofolio ini dibikin masih belom jadi PMS nya.</p>
-                    <a href="blank.html" class="btn primary-btn hover-wobble project-btn" data-i18n="project6-btn">Belom jadi woi</a>
+                    <p data-i18n="project6-desc">Website Property Management System (PMS) buat bisnis kos kosan. Pas
+                        website portofolio ini dibikin masih belom jadi PMS nya.</p>
+                    <a href="blank.html" class="btn primary-btn hover-wobble project-btn" data-i18n="project6-btn">Belom
+                        jadi woi</a>
                 </div>
             </div>
 
@@ -127,8 +154,26 @@
                 <div class="project-info">
                     <span class="tag tag-blue">Video Editing</span>
                     <h3 data-i18n="project7-title">Narcos Opening Remake</h3>
-                    <p data-i18n="project7-desc">Video yang terinspirasi dari opening serial Narcos, tapi videonya dari kenang kenangan waktu dipondok.</p>
-                    <a href="https://drive.google.com/file/d/18bpGi8d_tU0gPhw-6GChld1-3xxMtGn8/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn" data-i18n="project7-btn">Nonton</a>
+                    <p data-i18n="project7-desc">Video yang terinspirasi dari opening serial Narcos, tapi videonya dari
+                        kenang kenangan waktu dipondok.</p>
+                    <a href="https://drive.google.com/file/d/18bpGi8d_tU0gPhw-6GChld1-3xxMtGn8/view?usp=sharing"
+                        target="_blank" rel="noopener noreferrer" class="btn primary-btn hover-wobble project-btn"
+                        data-i18n="project7-btn">Nonton</a>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="project-card card-anim">
+                <div class="project-img-wrapper">
+                    <img src="haflah.png" alt="Haflah Akhir Sanah">
+                </div>
+                <div class="project-info">
+                    <span class="tag tag-pink">Web Dev</span>
+                    <h3 data-i18n="project8-title">Undangan Haflah</h3>
+                    <p data-i18n="project8-desc">Web undangan untuk acara Haflah Takharruj Angkatan 36 Pesantren
+                        Al-Hamidiyah.</p>
+                    <a href="https://amfhaa.github.io/undangan-haflah/" target="_blank" rel="noopener noreferrer"
+                        class="btn primary-btn hover-wobble project-btn" data-i18n="project5-btn">Lihat Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -140,20 +185,44 @@
             <h2 class="terminal-text" data-i18n="contact-title">Mau ngobrol lebih lanjut?</h2>
             <p class="terminal-text" data-i18n="contact-desc">Gas lah ngobrol, mabar, atau apalah.</p>
             <div class="social-links">
-                <a href="https://www.instagram.com/ammfhaa/" target="_blank" rel="noopener noreferrer" class="social-btn hover-wobble">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                <a href="https://www.instagram.com/ammfhaa/" target="_blank" rel="noopener noreferrer"
+                    class="social-btn hover-wobble">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
                     Instagram
                 </a>
-                <a href="https://github.com/Amfhaa" target="_blank" rel="noopener noreferrer" class="social-btn hover-wobble">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <a href="https://github.com/Amfhaa" target="_blank" rel="noopener noreferrer"
+                    class="social-btn hover-wobble">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>
                     GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/malfatihp/" target="_blank" rel="noopener noreferrer" class="social-btn hover-wobble">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                <a href="https://www.linkedin.com/in/malfatihp/" target="_blank" rel="noopener noreferrer"
+                    class="social-btn hover-wobble">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
                     LinkedIn
                 </a>
-                <a href="https://discordapp.com/users/759337844505313281" target="_blank" rel="noopener noreferrer" class="social-btn hover-wobble">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <a href="https://discordapp.com/users/759337844505313281" target="_blank" rel="noopener noreferrer"
+                    class="social-btn hover-wobble">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                        </path>
+                    </svg>
                     Discord
                 </a>
             </div>
@@ -165,7 +234,8 @@
     <div id="music-control-container" class="music-control-container">
         <button id="music-toggle-btn" class="music-toggle-btn playing" aria-label="Toggle Music">
             <span class="music-icon-wrapper">
-                <svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                     <path class="sound-wave wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                     <path class="sound-wave wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
@@ -189,26 +259,30 @@
     <!-- Custom animations for this page -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const isMob = window.matchMedia('(max-width: 768px)').matches;
+            const dist = isMob ? 20 : 30;
+
             // Staggered slide up on page load for the header elements
             anime({
                 targets: '.projects-header-content > *',
-                translateY: [40, 0],
+                translateY: [dist, 0],
                 opacity: [0, 1],
-                easing: 'easeOutElastic(1, .8)',
-                duration: 1000,
-                delay: anime.stagger(150, {start: 100})
+                easing: 'easeOutCubic',
+                duration: 700,
+                delay: anime.stagger(120, { start: 80 })
             });
-            
+
             // Staggered slide up for the navigation bar items
             anime({
                 targets: '.navbar > *',
-                translateY: [-30, 0],
+                translateY: [-20, 0],
                 opacity: [0, 1],
-                easing: 'easeOutQuint',
-                duration: 800,
-                delay: anime.stagger(100)
+                easing: 'easeOutCubic',
+                duration: 600,
+                delay: anime.stagger(80)
             });
         });
     </script>
 </body>
+
 </html>
