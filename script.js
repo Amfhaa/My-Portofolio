@@ -10,26 +10,31 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo(0, 0);
     }
 
+    // Mobile detection for lighter animations
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const animDistance = isMobile ? 20 : 30;
+    const animDuration = isMobile ? 600 : 800;
+
     // 1. Initial Page Load Animations (deferred until terminal loading completes)
     const initMainPageAnimations = () => {
         // Staggered fade in and up for general texts
         anime({
             targets: '.fade-in-up',
-            translateY: [50, 0],
+            translateY: [animDistance, 0],
             opacity: [0, 1],
-            easing: 'easeOutElastic(1, .8)',
-            duration: 1200,
-            delay: anime.stagger(150, {start: 200}) // reduced initial delay
+            easing: 'easeOutCubic',
+            duration: animDuration,
+            delay: anime.stagger(120, {start: 100})
         });
 
         // Word by word fast slide up for hero text
         anime({
             targets: '.hero-word',
-            translateY: [30, 0],
+            translateY: [20, 0],
             opacity: [0, 1],
-            easing: 'easeOutQuint',
-            duration: 600,
-            delay: anime.stagger(60) // very fast word by word
+            easing: 'easeOutQuart',
+            duration: 500,
+            delay: anime.stagger(50)
         });
 
         // Pop animation for the tags after words finish
@@ -37,19 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
             targets: '.hero-pop',
             scale: [0, 1],
             opacity: [0, 1],
-            easing: 'easeOutElastic(1, .5)',
-            duration: 1000,
-            delay: anime.stagger(150, {start: 400}) // starts after words
+            easing: 'easeOutBack',
+            duration: 700,
+            delay: anime.stagger(120, {start: 300})
         });
 
         // Scale in for the profile card
         anime({
             targets: '.fade-in-scale',
-            scale: [0.8, 1],
+            scale: [0.85, 1],
             opacity: [0, 1],
-            easing: 'easeOutElastic(1, .6)',
-            duration: 1500,
-            delay: 400
+            easing: 'easeOutCubic',
+            duration: 900,
+            delay: 300
         });
     };
 
@@ -450,18 +455,8 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 10000
     });
 
-    // Marquee continuous scroll
-    // Duplicate the text to make it seamless
-    const marqueeContent = document.querySelector('.marquee-content');
-    if (marqueeContent) {
-        anime({
-            targets: '.marquee-content',
-            translateX: ['0%', '-50%'],
-            loop: true,
-            easing: 'linear',
-            duration: 15000
-        });
-    }
+    // Marquee continuous scroll - now handled by pure CSS animation for smoother performance
+    // CSS @keyframes marquee-scroll in style.css handles this
 
     // 3. Scroll Reveal Animations using Intersection Observer
     const observerOptions = {
@@ -475,10 +470,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Animate cards when they come into view
                 anime({
                     targets: entry.target,
-                    translateY: [50, 0],
+                    translateY: [animDistance, 0],
                     opacity: [0, 1],
-                    easing: 'easeOutElastic(1, .8)',
-                    duration: 1000,
+                    easing: 'easeOutCubic',
+                    duration: animDuration,
                     delay: entry.target.dataset.delay || 0
                 });
                 observer.unobserve(entry.target);
@@ -494,6 +489,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!photoWrapper) return;
 
+        if (isMobile) {
+            // MOBILE: Simple stagger-in animation (no explode from center)
+            anime.set(photoWrapper, { translateY: 30, opacity: 0 });
+            cards.forEach(card => anime.set(card, { translateY: 25, opacity: 0 }));
+            anime.set(arrow, { scale: 0, opacity: 0 });
+
+            const tl = anime.timeline({ easing: 'easeOutCubic' });
+
+            tl.add({
+                targets: '.about-photo-wrapper',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                duration: 600
+            });
+
+            tl.add({
+                targets: '.about-card',
+                translateY: [25, 0],
+                opacity: [0, 1],
+                duration: 500,
+                delay: anime.stagger(80)
+            }, '-=300');
+
+            const targetScale = 0.6;
+            tl.add({
+                targets: '.photo-arrow-overlay',
+                scale: [0, targetScale],
+                opacity: [0, 1],
+                easing: 'easeOutBack',
+                duration: 500
+            }, '-=200');
+
+            return;
+        }
+
+        // DESKTOP: Full explode-from-center animation
         // 1. Get the center of the photo wrapper
         const photoRect = photoWrapper.getBoundingClientRect();
         const photoCenterX = photoRect.left + photoRect.width / 2;
@@ -518,8 +549,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Set photo wrapper initial state
         anime.set(photoWrapper, {
-            translateY: 150,
-            scale: 0.5,
+            translateY: 80,
+            scale: 0.6,
             opacity: 0
         });
 
@@ -531,39 +562,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 3. Create a Timeline Sequence
         const tl = anime.timeline({
-            easing: 'easeOutElastic(1, .8)'
+            easing: 'easeOutQuart'
         });
 
         // Step A: Middle photo wrapper pops up from below
         tl.add({
             targets: '.about-photo-wrapper',
-            translateY: [150, 0],
-            scale: [0.5, 1],
+            translateY: [80, 0],
+            scale: [0.6, 1],
             opacity: [0, 1],
-            duration: 1200
+            duration: 900
         });
 
-        // Step B: The 4 cards disperse to their original positions (translateX: 0, translateY: 0, scale: 1, opacity: 1)
+        // Step B: The 4 cards disperse to their original positions
         tl.add({
             targets: '.about-card',
             translateX: 0,
             translateY: 0,
             scale: 1,
             opacity: 1,
-            easing: 'easeOutElastic(1, .75)',
-            duration: 1300,
-            delay: anime.stagger(150)
-        }, '-=800'); // overlap and start dispersing as photo finishes coming up
+            easing: 'easeOutCubic',
+            duration: 800,
+            delay: anime.stagger(100)
+        }, '-=500');
 
         // Step C: The arrow overlay pops up last
-        const targetScale = window.innerWidth <= 480 ? 0.65 : 1.0;
+        const targetScale = 1.0;
         tl.add({
             targets: '.photo-arrow-overlay',
             scale: [0, targetScale],
             opacity: [0, 1],
-            easing: 'easeOutElastic(1, .6)',
-            duration: 800
-        }, '-=500'); // start popping up just before last cards finish dispersing
+            easing: 'easeOutBack',
+            duration: 600
+        }, '-=300');
     };
 
     // Separate IntersectionObserver for the About Section
@@ -608,28 +639,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Project cards subtle lift on hover
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            anime({
-                targets: card,
-                translateY: -8,
-                boxShadow: '14px 14px 0px var(--shadow-color)',
-                duration: 200,
-                easing: 'easeOutQuad'
+    // Project cards subtle lift on hover (desktop only — mobile touch devices don't need this)
+    if (!isMobile) {
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                anime({
+                    targets: card,
+                    translateY: -6,
+                    boxShadow: '12px 12px 0px var(--shadow-color)',
+                    duration: 250,
+                    easing: 'easeOutCubic'
+                });
+            });
+            card.addEventListener('mouseleave', () => {
+                anime({
+                    targets: card,
+                    translateY: 0,
+                    boxShadow: '10px 10px 0px var(--shadow-color)',
+                    duration: 250,
+                    easing: 'easeOutCubic'
+                });
             });
         });
-        card.addEventListener('mouseleave', () => {
-            anime({
-                targets: card,
-                translateY: 0,
-                boxShadow: '10px 10px 0px var(--shadow-color)',
-                duration: 200,
-                easing: 'easeOutQuad'
-            });
-        });
-    });
+    }
 
     // 5. Mobile Menu Toggle Logic
     const menuToggle = document.getElementById('mobile-menu');
@@ -848,18 +881,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const footerTitle = document.querySelector('.footer-content h2');
         const footerDesc = document.querySelector('.footer-content p:not(.footer-credit)');
 
-        // Step A: Type the title heading slowly (terminal feel: 80ms per char)
-        typeElement(footerTitle, 80, () => {
-            // Step B: Type description paragraph (terminal feel: 35ms per char)
-            typeElement(footerDesc, 35, () => {
+        // On mobile: faster typing or skip typewriter entirely for snappier feel
+        const titleSpeed = isMobile ? 35 : 80;
+        const descSpeed = isMobile ? 15 : 35;
+
+        // Step A: Type the title heading
+        typeElement(footerTitle, titleSpeed, () => {
+            // Step B: Type description paragraph
+            typeElement(footerDesc, descSpeed, () => {
                 // Step C: Social buttons pop up stagger style
                 anime({
                     targets: '.social-btn',
                     scale: [0, 1],
                     opacity: [0, 1],
-                    easing: 'easeOutElastic(1, .6)',
-                    duration: 800,
-                    delay: anime.stagger(150)
+                    easing: 'easeOutBack',
+                    duration: 500,
+                    delay: anime.stagger(80)
                 });
             });
         });
@@ -1097,13 +1134,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         if (animate) {
-            // High-end smooth stagger pop animation on change
+            // Smooth stagger animation on language change
             anime({
                 targets: ['[data-i18n]', '.hero-word', '.hero-pop'],
                 opacity: [1, 0],
-                translateY: [0, -10],
-                easing: 'easeInQuint',
-                duration: 200,
+                translateY: [0, -8],
+                easing: 'easeInCubic',
+                duration: 180,
                 complete: () => {
                     performUpdate();
 
@@ -1111,10 +1148,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     anime({
                         targets: ['[data-i18n]', '.hero-word', '.hero-pop'],
                         opacity: [0, 1],
-                        translateY: [15, 0],
-                        easing: 'easeOutElastic(1, .8)',
-                        duration: 800,
-                        delay: anime.stagger(15)
+                        translateY: [12, 0],
+                        easing: 'easeOutCubic',
+                        duration: 500,
+                        delay: anime.stagger(10)
                     });
 
                     // Reactivate levitation
